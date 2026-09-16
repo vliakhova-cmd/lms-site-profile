@@ -390,17 +390,11 @@ export const doaActions = (hasSelection: boolean, readOnly = false) => ({
   // until something is selected.
   //
   // Inside a site profile the mapping is not editable at all — it is a study
-  // decision — so the site's Link course is dropped rather than replaced.
+  // decision — so the site's Link course is dropped rather than replaced, and
+  // what is left is the re-check and the export.
   primary: { key: 'recheck', icon: faRotateLeft, label: 'Re-run eTMF check' } as Action,
   candidates: [
-    ...(readOnly
-      ? [
-          // Chases the people this matrix shows as short of their training.
-          // People belong to a site, so the reminder is a site action — the
-          // study has no one in particular to send it to.
-          { key: 'remind', icon: faBell, label: 'Send reminder' },
-        ]
-      : [{ key: 'link', icon: faGraduationCap, label: 'Link course', disabled: !hasSelection }]),
+    ...(readOnly ? [] : [{ key: 'link', icon: faGraduationCap, label: 'Link course', disabled: !hasSelection }]),
     { key: 'export', icon: faCircleUp, label: 'Export matrix' },
   ] as Action[],
 });
