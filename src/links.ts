@@ -26,6 +26,16 @@ export const userUrl = (siteNumber: string, name: string, section = 'general-inf
   `${USER_APP}?site=${encodeURIComponent(siteNumber)}&user=${encodeURIComponent(name)}&section=${section}`;
 
 /**
+ * The eTMF — doa-log, which holds the signed DOA logs these tasks are read
+ * from. Its own app and its own repository, so it is reached by URL like the
+ * rest: `?site=` opens that site's folder, `&doc=doa` its signed log itself.
+ */
+export const ETMF_APP = DEV ? 'http://localhost:5175/' : '/doa-log-report/';
+
+export const etmfSiteUrl = (siteNumber: string) => `${ETMF_APP}?site=${encodeURIComponent(siteNumber)}`;
+export const etmfDocUrl = (siteNumber: string) => `${etmfSiteUrl(siteNumber)}&doc=doa`;
+
+/**
  * AI Course Authoring — a fourth app, and the one this study writes courses
  * with. `from` is where it comes back to when the draft is saved or the flow
  * is abandoned, so leaving here and returning is a round trip rather than a

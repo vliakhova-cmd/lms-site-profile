@@ -12,33 +12,13 @@
 // prototypes tell one story.
 
 /**
- * Where "Open in eTMF" goes: the doa-log prototype, which renders this very
- * document and its cross-module check.
- *
- * In development it is its own app on the port .claude/launch.json reserves,
- * so the link resolves only while that dev server is up. On the published
- * site the three prototypes are built together, and it sits under this one —
- * BASE_URL is what the build put in front of them.
+ * Where "Open in eTMF" goes, and what the DOA Log chip opens: the doa-log
+ * prototype, which renders this very document and its cross-module check. It
+ * is its own app now, so the URLs are built in src/links.ts with every other
+ * cross-app link rather than written a second time here.
  */
-export const ETMF_URL = import.meta.env.DEV ? 'http://localhost:5175' : `${import.meta.env.BASE_URL}doa`;
+export { ETMF_APP as ETMF_URL, etmfSiteUrl as etmfUrlForSite, etmfDocUrl as etmfDocUrlForSite } from './links';
 
-/**
- * Each site's log is a DIFFERENT document in a DIFFERENT folder, so the link
- * carries the site: doa-log opens that site's 02.2_Delegation rather than
- * whichever one it happens to default to.
- */
-export function etmfUrlForSite(siteNumber: string): string {
-  return `${ETMF_URL}/?site=${encodeURIComponent(siteNumber)}`;
-}
-
-/**
- * The chip names a DOCUMENT, so it opens that document: ?doc=doa lands on the
- * site's signed log in eTMF's document preview rather than on the folder it
- * sits in, which would leave the visitor to find the row themselves.
- */
-export function etmfDocUrlForSite(siteNumber: string): string {
-  return `${etmfUrlForSite(siteNumber)}&doc=doa`;
-}
 
 /**
  * Where "Draft course" goes: the ai-course-authoring-flow prototype, which
