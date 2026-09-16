@@ -1,0 +1,71 @@
+/* Minimal reset — this project has no Tailwind/preflight, but every inline
+   style in it is written assuming border-box sizing and a zeroed body
+   margin. Without this, form elements (textarea/input/select) fall back to
+   content-box with browser-default padding, so a `width: 100%` element
+   quietly renders a few px wider than its container. */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+}
+
+/* The generated-tasks wand. Keyframes are the one thing inline styles cannot
+   express, so this is the only rule set outside the components. */
+@keyframes doa-pop {
+  from {
+    transform: scale(0.6);
+    opacity: 0;
+  }
+  to {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+@keyframes doa-halo {
+  0% {
+    box-shadow: 0 0 0 0 rgba(115, 73, 170, 0.35);
+  }
+  70% {
+    box-shadow: 0 0 0 12px rgba(115, 73, 170, 0);
+  }
+  100% {
+    box-shadow: 0 0 0 0 rgba(115, 73, 170, 0);
+  }
+}
+
+@keyframes doa-wave {
+  30% {
+    transform: rotate(-14deg) scale(1.1);
+  }
+  60% {
+    transform: rotate(9deg) scale(1.04);
+  }
+}
+
+/* The badge lands, pulses twice, and settles — a flourish on arrival, not an
+   animation that runs forever under the reader's eye. */
+.doa-badge {
+  animation: doa-pop 280ms ease-out, doa-halo 1600ms ease-out 200ms 2;
+}
+
+.doa-badge svg {
+  animation: doa-wave 1200ms ease-in-out 250ms 2;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .doa-badge,
+  .doa-badge svg {
+    animation: none;
+  }
+}
+
+/* dialog/overlay/bg — the scrim behind a modal. ::backdrop cannot be reached
+   from inline styles, so it lives here with the other keyframes. */
+dialog::backdrop {
+  background: #0b152899;
+}
