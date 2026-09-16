@@ -22,7 +22,7 @@ import {
   etmfUrlForSite,
   etmfDocUrlForSite,
   ETMF_URL,
-  AI_AUTHORING_URL,
+  aiAuthoringUrl,
 } from './doaData';
 import { notEnrolledFor } from './personnelData';
 import { HEAD, CELL, SortableHeader, Chip, Pagination, TableSurface } from './tableKit';
@@ -370,7 +370,7 @@ function SuggestionCell({ duty }: { duty: Duty }) {
           // Same tab, and carrying where to come back to: closing the authoring
           // modal returns here rather than stranding the visitor in the
           // content library behind it.
-          href={`${AI_AUTHORING_URL}&from=${encodeURIComponent(window.location.href)}`}
+          href={aiAuthoringUrl()}
           title={`Draft "${s.course}" in AI course authoring, from ${s.source}`}
           style={{
             display: 'inline-flex',

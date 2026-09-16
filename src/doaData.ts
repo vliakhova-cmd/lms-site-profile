@@ -42,14 +42,15 @@ export function etmfDocUrlForSite(siteNumber: string): string {
 
 /**
  * Where "Draft course" goes: the ai-course-authoring-flow prototype, which
- * turns source documents into a course. ?flow=ai opens the authoring flow
- * itself rather than the content library behind it. Same caveat as ETMF_URL —
- * it resolves only while that app's dev server is up. The duty and its source
- * documents are NOT handed over yet; the flow would need to accept a brief.
+ * turns source documents into a course. It is its own app and its own
+ * repository, so the URL is built where every other cross-app URL is —
+ * src/links.ts — rather than being written a second time here.
+ *
+ * The duty and its source documents are NOT handed over yet; the flow would
+ * need to accept a brief. `source=none` at least stops it opening on a
+ * document nobody picked.
  */
-export const AI_AUTHORING_URL = import.meta.env.DEV
-  ? 'http://localhost:5174/?flow=ai'
-  : `${import.meta.env.BASE_URL}authoring/?flow=ai`;
+export { authoringUrl as aiAuthoringUrl } from './links';
 
 /**
  * The study's blank DOA form — the template every site's log is signed on. It

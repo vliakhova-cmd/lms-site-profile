@@ -21,7 +21,6 @@ import {
   faTableList,
   faWandMagicSparkles,
   faFileLines,
-  faDiagramProject,
   faBell,
   IconDefinition,
 } from '@fortawesome/free-solid-svg-icons';
@@ -384,25 +383,18 @@ export const sitesActions = (hasSelection: boolean) => ({
 // The DOA log is authored and signed in eTMF and imported here, so there is
 // nothing to create — the actions are about the mapping, and the document
 // itself is opened from the source-document bar at the top of the section.
-export const doaActions = (
-  hasSelection: boolean,
-  readOnly = false,
-  /** Site level only: go to where the duty → course linkage is maintained. */
-  onTaskLinkage?: () => void,
-) => ({
+export const doaActions = (hasSelection: boolean, readOnly = false) => ({
   // Drafting a course from the study documents is offered on the unmapped
   // duties themselves, not here — the toolbar only maintains the mapping, so
   // the always-available re-check leads and the row action stays disabled
   // until something is selected.
   //
-  // Inside a site profile the mapping is not editable at all (it is a study
-  // decision), so instead of Link course the site gets Task linkage, which
-  // takes you to the study's matrix where linking actually happens.
+  // Inside a site profile the mapping is not editable at all — it is a study
+  // decision — so the site's Link course is dropped rather than replaced.
   primary: { key: 'recheck', icon: faRotateLeft, label: 'Re-run eTMF check' } as Action,
   candidates: [
     ...(readOnly
       ? [
-          { key: 'linkage', icon: faDiagramProject, label: 'Task linkage', onClick: onTaskLinkage },
           // Chases the people this matrix shows as short of their training.
           // People belong to a site, so the reminder is a site action — the
           // study has no one in particular to send it to.

@@ -215,10 +215,7 @@ export function SiteProfilePage() {
 
             {isDoa && (
               <>
-                <TrainingToolbar
-                  {...doaActions(false, true, () => go(studyUrl('doa')))}
-                  searchPlaceholder="Search duties"
-                />
+                <TrainingToolbar {...doaActions(false, true)} searchPlaceholder="Search duties" />
                 {/* At site level the log is fixed — there is nothing to pick */}
                 <FilterRow filters={DOA_SITE_FILTERS} />
                 <DoaSection site={site.name} />

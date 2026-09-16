@@ -25,6 +25,19 @@ export const siteUrl = (siteNumber: string, section = 'general-info') =>
 export const userUrl = (siteNumber: string, name: string, section = 'general-info') =>
   `${USER_APP}?site=${encodeURIComponent(siteNumber)}&user=${encodeURIComponent(name)}&section=${section}`;
 
+/**
+ * AI Course Authoring — a fourth app, and the one this study writes courses
+ * with. `from` is where it comes back to when the draft is saved or the flow
+ * is abandoned, so leaving here and returning is a round trip rather than a
+ * dead end. `source=none` opens the flow with nothing preselected: the duty
+ * and its documents are not handed over yet, and a document nobody picked
+ * would be worse than an empty field.
+ */
+export const AUTHORING_APP = DEV ? 'http://localhost:5174/' : '/ai-course-authoring-flow/';
+
+export const authoringUrl = () =>
+  `${AUTHORING_APP}?flow=ai&source=none&from=${encodeURIComponent(window.location.href)}`;
+
 /** "0982 - Miles, H" → "0982" — the label carries the number in front. */
 export const siteNumberOf = (label: string) => label.split(' - ')[0];
 
