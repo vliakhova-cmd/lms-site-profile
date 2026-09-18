@@ -394,7 +394,9 @@ export function TopHeaderBar({ crumbs, avatarInitials, role, notifCount = 5 }: T
           {switcher && <WaffleMenu etmfUrl={ETMF_URL} onClose={() => setSwitcher(false)} />}
         </div>
 
-        <LogoCrumb name="TI" />
+        {/* The product this screen belongs to. These are LMS screens; the
+            eTMF keeps TI, which is the product name there. */}
+        <LogoCrumb name="LMS" />
         <HeaderAction label="Home">
           <FontAwesomeIcon icon={faHouse} style={{ width: icon.m, height: icon.m }} />
         </HeaderAction>
